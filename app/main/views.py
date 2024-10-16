@@ -6,30 +6,26 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
-from .serializer import NoteSerializer, TagSerializer
+from .serializers import NoteSerializer, TagSerializer
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.views import APIView, Response 
+from rest_framework.views import APIView, Response
 from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
-
-
 
 
 class TagViewSet(ModelViewSet):
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
-    permission_classes =[DjangoModelPermissionsOrAnonReadOnly]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
 
 
 class NoteViewSet(ModelViewSet):
     serializer_class = NoteSerializer
     queryset = Note.objects.all()
-    permission_classes =[DjangoModelPermissionsOrAnonReadOnly]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+
 
 def index(request):
     return render(request, "index.html")
-
-
-
 
 
 # # create editor page
